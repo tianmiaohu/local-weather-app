@@ -8,9 +8,9 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display title in h1 tag', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('local-weather-app app is running!');
+    expect(page.getTitleText()).toEqual('LocalCast Weather');
   });
 
   afterEach(async () => {
