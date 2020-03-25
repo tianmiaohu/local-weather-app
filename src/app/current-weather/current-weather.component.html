@@ -1,11 +1,12 @@
 <div *ngIf="current">
-    <div>{{current.city}}, {{current.country}}</div>
-    <div>{{current.date | date:'fullDate'}}</div>
+  <div fxLayout="row" fxLayoutAlign='space-between center'>
     <div>
-      <img [src]='current.image'>
-      <span>{{current.temperature | number:'1.0-0'}}℉</span>
+      <div>{{current.city}}, {{current.country}}</div>
+      <div>{{current.date | date:'fullDate'}}</div>
     </div>
-    <div>
-      {{current.description}}
-    </div>
+    <div><img [src]='current.image'></div>
+  </div>
+  <div fxLayoutAlign="center">
+    <div>{{current.description}}, {{current.temperature | number:'1.0-0'}}℉</div>
+  </div>
 </div>
