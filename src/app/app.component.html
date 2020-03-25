@@ -1,7 +1,14 @@
-<div style="text-align:center">
-  <h1>LocalCast Weather</h1>
+<div>
+  <mat-toolbar color='primary'>LocalCast Weather</mat-toolbar>
   <div>Your city, your forecast, right now!</div>
-  <h2>Current Weather</h2>
-  <app-current-weather></app-current-weather>
-  <!-- div>current weather</div></div -->
+  <div fxLayout="row">
+    <div fxFlex></div>
+    <div fxFlex="300px">  
+      <mat-card>
+        <h2>Current Weather</h2>
+        <app-current-weather></app-current-weather>
+      </mat-card>
+    </div>
+    <div fxFlex></div>
+  </div>
 <router-outlet></router-outlet>
