@@ -5,12 +5,15 @@ import { CurrentWeatherComponent } from './current-weather/current-weather.compo
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { WeatherService } from './weather/weather.service';
 import { WeatherServiceFake } from './weather/weather.service.fake';
+import { MaterialModule } from './material.module';
+import { FlexLayoutModule } from '@angular/flex-layout'
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule, HttpClientTestingModule
+        RouterTestingModule, HttpClientTestingModule, 
+        MaterialModule, FlexLayoutModule
       ],
       declarations: [
         AppComponent, CurrentWeatherComponent
@@ -35,6 +38,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('LocalCast Weather');
+    expect(compiled.querySelector('mat-toolbar').textContent).toContain('LocalCast Weather');
   });
 });

@@ -5,6 +5,9 @@ import { CurrentWeatherComponent } from './current-weather.component';
 import { WeatherService } from '../weather/weather.service';
 import { WeatherServiceFake } from '../weather/weather.service.fake';
 
+import { MaterialModule } from '../material.module';
+import { FlexLayoutModule } from '@angular/flex-layout'
+
 describe('CurrentWeatherComponent', () => {
   let component: CurrentWeatherComponent;
   let fixture: ComponentFixture<CurrentWeatherComponent>;
@@ -12,7 +15,7 @@ describe('CurrentWeatherComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CurrentWeatherComponent ],
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, MaterialModule, FlexLayoutModule],
       providers: [{ provide: WeatherService, useClass: WeatherServiceFake}]
     })
     .compileComponents();
