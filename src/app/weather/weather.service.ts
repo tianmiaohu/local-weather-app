@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { ICurrentWeather } from '../interfaces';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs'
+import { BehaviorSubject } from 'rxjs'
 
 interface ICurrentWeatherData {
   weather: [{
@@ -28,7 +29,17 @@ export interface IWeatherService {
   providedIn: 'root'
 })
 export class WeatherService implements IWeatherService {
-  constructor(private httpClient: HttpClient) { }
+  currentWeather = new BehaviorSubject<ICurrentWeather>({
+    city: '--',
+    country: '--',
+    date: Date.now(),
+    image: '',
+    temperature: 0,
+    description: '',
+  });
+
+  constructor(private httpClient: HttpClient) {
+   }
 
   getCurrentWeather(
     search: string | number,

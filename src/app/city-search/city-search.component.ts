@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms'
 import { WeatherService } from '../weather/weather.service';
 import { debounceTime } from 'rxjs/operators'
@@ -10,7 +10,6 @@ import { debounceTime } from 'rxjs/operators'
 })
 export class CitySearchComponent implements OnInit {
   search = new FormControl('Bethesda, US', [Validators.minLength(2)]);
-  @Output() searchEvent = new EventEmitter<string>();
 
   constructor(private weatherService: WeatherService) { }
 
@@ -19,10 +18,17 @@ export class CitySearchComponent implements OnInit {
     .pipe(debounceTime(1000))
     .subscribe((searchValue: string) => {
       if (this.search.valid) {
-        this.searchEvent.emit(searchValue)
+        this.fetchWeatherData(searchValue);
       }
     });
-    this.searchEvent.emit(this.search.value);
+    this.fetchWeatherData(this.search.value);
+  }
+
+  fetchWeatherData(searchValue: string): void {
+    const userInput = searchValue.split(',').map(s => s.trim());
+    this.weatherService
+      .getCurrentWeather(userInput[0], userInput.length > 1 ? userInput[1] : undefined)
+      .subscribe(data => this.weatherService.currentWeather.next(data));
   }
 
 }
